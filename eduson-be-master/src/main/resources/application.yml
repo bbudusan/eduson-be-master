@@ -1,0 +1,127 @@
+server:
+  port: 8080
+  servlet:
+    context-path:'/api'
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/eduson?createDatabaseIfNotExist=true&autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8&serverTimezone=UTC
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password:
+    #username: ${DB_USERNAME:root}
+    #password: ${DB_PASSWORD:root}
+    hikari:
+      connection-timeout: 600000
+
+  jpa:
+    show_sql: false
+    generate-ddl: true
+    hibernate:
+      #ddl-auto: create
+      ddl-auto: validate
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
+
+  data:
+    web:
+      pageable:
+        size-parameter: size
+        page-parameter: page
+        default-page-size: 10
+        one-indexed-parameters: false
+        max-page-size: 2000
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: condormaraa@gmail.com
+    password: Parola123456!@#
+    properties.mail.smtp:
+      socketFactory.port: 465
+      socketFactory.class: javax.net.ssl.SSLSocketFactory
+      socketFactory.fallback: false
+      auth: true
+      ssl.enable: true
+      starttls.enable: false
+
+  flyway:
+    baseline-on-migrate: true
+    baseline-version: 1.0.0
+    locations: classpath:db/migration
+    validate-on-migrate: true
+
+  thymeleaf:
+    enabled: false
+
+  file-service:
+    path: src/main/resources/uploaded-files/
+    path-delimiter: \\
+    #domain: http://localhost:8080/
+    domain: http://18.197.26.150:8080/
+  storage:
+    type: MINIO
+
+  frontend:
+    domain: http://18.197.26.150
+    domain2: http://localhost:4200
+
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 5000MB
+      max-request-size: 5000MB
+
+  output:
+    ansi:
+      enabled: always
+
+properties:
+  baseUrl: http://localhost:8080/
+
+jwt:
+  issuer: auth
+  # 32 minutes 1920000 1 minute 60000
+  access-expiration-in-ms: 1920000
+  # access-expiration-in-ms: 60000
+  # 72 hours 259200000 6 minutes 360000
+  refresh-expiration-in-ms: 259200000
+  # refresh-expiration-in-ms: 360000
+  # this should be a setable general setting TODO
+  video-expiration-in-ms: 3000
+  alias: prgxKey
+  certificate: prgxKey.jks
+  store-password: prgxpass
+  key-password: prgxpass
+  secret: 68?Rctu2?_p}Hh8}&=|j!dSVh,en).=SQA6&U+BSx/Fhs84kdg5.V'y;G8Es.9S8NH9Th}~8Bd4yc_Mi
+
+cloud:
+  aws:
+    credentials:
+      accessKey: test
+      secretKey: test
+    region: eu-west-1
+    bucket: test
+
+  minio:
+    credentials:
+      accessKey: AZIIIOSFTDNF7ECAMPLP
+      secretKey: wJalrXUtnFE0I/K3MDENG/jPxRYiCYEXATPLEKEO
+    bucket: eduson-test
+    endpoint: http://18.197.26.150:7000/
+
+email:
+  from: cont@eduson.ro
+  postmark:
+    apiToken: "4b9fa879-4a7d-41e4-a78a-517f877b0e94"
+    templateAlias:
+      inviteUser: "invite-user"
+
+stripe_public_key:
+stripe_secret_key:
+
+---
+spring:
+  profiles: cloud
+  datasource:
+    url: jdbc:mysql://${DB}:3306/eduson?autoReconnect=true&useSSL=false&useUnicode=true&characterEncoding=utf-8&allowPublicKeyRetrieval=true

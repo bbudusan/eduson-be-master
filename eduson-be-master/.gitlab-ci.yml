@@ -1,0 +1,26 @@
+stages:
+    - build
+    - deploy
+
+before_script:
+    - make login
+
+build:
+    stage: build
+    script:
+        - make build
+        - make push
+    only:
+        - "master"
+
+# https://docs.gitlab.com/ee/ci/environments.html
+deploy_prod:
+    stage: deploy
+    script:
+        - echo "Deploy prod server"
+        - make deploy-prod
+    environment:
+        name: prod
+        url: http://18.197.26.150
+    only:
+        - "master"

@@ -1,0 +1,24 @@
+version: "3.8"
+
+services:
+  eduson-db:
+    image: registry.gitlab.com/medminar/eduson-db
+    container_name: eduson-db
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - eduson
+    volumes:
+      - ~/data:/var/lib/mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_USERNAME: root
+      MYSQL_DATABASE: eduson
+
+networks:
+  eduson:
+    name: eduson
+    driver: bridge
+
+

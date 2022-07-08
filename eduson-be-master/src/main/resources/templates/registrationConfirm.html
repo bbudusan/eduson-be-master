@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+</head>
+
+<body>
+<div style="background-color: #EEEEEE; padding-bottom: 30px;">
+    <table style="width: 450px; margin: auto; border-collapse: collapse; border-spacing: 0; border: 0;">
+        <tr>
+            <td style="text-align: center; background-color: rgb(33,150,243); color: white;"><span style="font-size: 24px; padding: 10px 5px; display: inline-block"> eduson </span></td>
+        </tr>
+        <tr>
+            <td style="line-height:20px;padding: 25px 20px 0px;font-size: 16px; text-align: center; background-color: white; color: grey;">
+                <br/>
+                <span style=""> Welcome to eduson</span></td>
+        </tr>
+        <tr>
+            <td style="line-height:20px;padding: 25px 20px 30px;font-size: 16px; text-align: center; background-color: white; color: grey;">
+                <br/>
+                <span style="">To activate your account please click the link below:</span></td>
+        </tr>
+        <tr style="width: 500px; background-color: white;">
+
+            <td style="text-align: center; padding-bottom: 30px"><a th:href="@{${baseUrl}} + 'api/auth/confirmation?email='+${email}+'&amp;token=' + ${token}" target="_blank" rel="nofollow">
+                <span
+                    style="background-color: white; color: rgb(33,150,243); display: inline-block; border: 1px solid; border-color:rgb(33,150,243); font-size: 18px; padding: 10px 30px 10px; color: rgb(33,150,243)">Activate account</span>
+            </a></td>
+        </tr>
+        <tr>
+            <td style="text-align: center; background-color: white; color: grey;"><span style="font-size: 12px; padding: 5px 5px 15px; display: inline-block"> If you haven't created an account on eduson.com please ignore this email. </span>
+            </td>
+        </tr>
+        <tr>
+            <td style="text-align: center; color: grey; background-color: #EEEEEE"><span style="font-size: 12px; padding: 25px 5px 0px; display: inline-block"> If the buttons are not working, please set the mail as NOT SPAM and then access it through the inbox folder. </span>
+            </td>
+        </tr>
+        <tr>
+            <td rowspan="4" style="text-align: center; color: grey; background-color: #EEEEEE;">
+                <span style="font-size: 12px; padding: 0px 10px 35px; display: inline-block"> This mail is generated. Please do not reply. </span>
+            </td>
+        </tr>
+    </table>
+</div>
+</body>
+
+</html>

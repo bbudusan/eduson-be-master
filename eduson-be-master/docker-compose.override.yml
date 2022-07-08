@@ -1,0 +1,9 @@
+version: "3.8"
+
+services:
+  eduson-be:
+    build: .
+
+  eduson-db:
+    build:
+      context: db

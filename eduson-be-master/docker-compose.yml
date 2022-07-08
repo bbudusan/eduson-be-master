@@ -1,0 +1,36 @@
+version: "3.8"
+
+services:
+  eduson-be:
+    image: registry.gitlab.com/medminar/eduson-be
+    volumes:
+      - /home/ubuntu:/home/ubuntu
+    container_name: eduson-be
+    environment:
+      DB: eduson-db
+    networks:
+      - eduson
+    depends_on:
+      - eduson-db
+    ports:
+      - 8080:8080
+
+  eduson-db:
+    image: registry.gitlab.com/medminar/eduson-db
+    container_name: eduson-db
+    restart: always
+    ports:
+      - 3306:3306
+    networks:
+      - eduson
+
+  eduson-fe:
+    image: registry.gitlab.com/medminar/eduson-fe
+    container_name: eduson-fe
+    ports:
+      - 9000:9000
+
+networks:
+  eduson:
+    name: eduson
+    driver: bridge
