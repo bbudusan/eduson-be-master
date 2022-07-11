@@ -11,6 +11,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 public class EdusonApplication {
 
 	public static void main(String[] args) {
+
 		SpringApplication.run(EdusonApplication.class, args);
 	}
 
